@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+
+  # start localstack for "s3" tutorial
+  localstack:
+    image: localstack/localstack
+
+  # start up jupyter
+  jupyter:
+    build: .
+    ports:
+      - "8888:8888"
+    environment:
+      - AWS_DEFAULT_REGION=us-east-1
+      # We are using localstack, so we don't actual need credentials, but boto3
+      # needs something to be set.
+      - AWS_ACCESS_KEY_ID=NOT_A_REAL_KEY
+      - AWS_SECRET_ACCESS_KEY=NOT_A_REAL_SECRET_KEY
+    volumes:
+      - "./notebooks:/home/jovyan/notebooks"
