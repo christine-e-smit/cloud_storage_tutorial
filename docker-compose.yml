@@ -3,7 +3,7 @@ services:
 
   # start localstack for "s3" tutorial
   localstack:
-    image: localstack/localstack
+    image: localstack/localstack:0.11.3
 
   # start up jupyter
   jupyter:
